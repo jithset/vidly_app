@@ -1,16 +1,22 @@
-﻿@model Vidly.ViewModels.CustomerViewModel
+﻿@model IEnumerable<Vidly.Models.Customer> 
 
 <h1>Customers</h1>
 
-@if (Model.Customers.Count > 0)
+@if (Model.Any())
 {
-    <table>
-        <th>Customer</th>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Membership Name</th>
+            </tr>
+        </thead>
         <tbody>
-            @foreach (var customer in Model.Customers)
+            @foreach (var customer in Model)
             {
             <tr>
                 <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.ID}, null)</td>
+                <td>@customer.MembershipType.MembershipName</td>
             </tr>
             }
         </tbody>
