@@ -8,6 +8,7 @@ namespace Vidly.Models
     public partial class MyDBContext : DbContext
     {
         public DbSet<Customer> Customers { get; set;}
+        public DbSet<MembershipType> MembershipTypes { get; set; }
         public MyDBContext()
             : base("name=MyDBContext")
         {

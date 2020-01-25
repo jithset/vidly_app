@@ -15,6 +15,11 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.Customers", "MembershipTypeId", "dbo.MembershipTypes");
+            DropIndex("dbo.Customers", new[] { "MembershipTypeId" });
+            Sql("TRUNCATE TABLE MembershipTypes");
+            CreateIndex("dbo.Customers", "MembershipTypeId");
+            AddForeignKey("dbo.Customers", "MembershipTypeId", "dbo.MembershipTypes", "Id", cascadeDelete: true);
         }
     }
 }
